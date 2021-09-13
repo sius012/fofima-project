@@ -22,4 +22,5 @@ Route::get('/dashboard', function () {
     return view('welcome');
 });
 Route::post('/transaksi/memasukan', 'TransaksiController@prosestransaksi');
+Route::get('/transaksi/tabel', 'TransaksiController@tampilkan');
 

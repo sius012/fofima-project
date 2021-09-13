@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+use App\Transaksi;
+use App\Perkiraan;
 
 class TransaksiController extends Controller
 {
    public function index(){
-     $transaksi = DB::table('buku_besar')->get();
-     
-
-     $perkiraan = DB::table('nomor_perkiraan')->get();
-     return view('transaksi',compact('transaksi','perkiraan'));
+        $perkiraan = Perkiraan::get();
+        return view('transaksi', compact('perkiraan'));
    }
 
    public function prosestransaksi(Request $request){
@@ -38,12 +37,19 @@ class TransaksiController extends Controller
        $upload2 = DB::table('buku_besar')->insert(['tanggal' => $tanggal, 'tipe' => 'kredit', 'nmr_perkiraan' => $kredit, 'nominal' => $nominal, 'keterangan_transaksi' => $keterangan, 'nota' => $namafile]);
        if($upload and $upload2){
            $file->move($tujuanupload,$file->getClientOriginalName());
-           echo "berhasil";
-           return redirect('/transaksi');
+           $transaksi = Transaksi::get();
+           return view('tabel', compact('transaksi'));
        }else{
            echo "gagal";
        }
 
 
+   }
+   public function tampilkan(){
+         $transaksi = DB::table('buku_besar')->get();
+     
+
+        $perkiraan = DB::table('nomor_perkiraan')->get();
+        return view('tabel',compact('transaksi','perkiraan'));
    }
 }

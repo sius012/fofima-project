@@ -5,29 +5,6 @@
         <script src="{{asset('js/transaksi.js')}}"></script>
     </head>
     <body>
-        <table>
-            <tr>
-                <th>Tanggal</th>
-                <th>Tipe</th>
-                <th>Nomor Perkiraan</th>
-                <th>Keterangan Transaksi</th>
-                <th>Nota</th>
-            </tr>
-            @foreach($transaksi as $t)
-            <tr>
-                <td>{{$t->tanggal}}</td>
-                <td>{{$t->tipe}}</td>
-                <td>{{$t->nmr_perkiraan}}</td>
-                <th>{{$t->keterangan_transaksi}}</th>
-                <th>{{$t->nota}}</th>
-            </tr>
-            @endforeach
-
-
-            
-            
-        </table>
-        <button>Tambah</button>
         <div class="form">
        
             <form method="post" action="/transaksi/memasukan"   enctype="multipart/form-data">
