@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/transaksi',  'TransaksiController@index');
+Route::get('/dashboard', function () {
+    return view('welcome');
+});
+Route::post('/transaksi/memasukan', 'TransaksiController@prosestransaksi');
+
