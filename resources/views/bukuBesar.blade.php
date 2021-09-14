@@ -11,14 +11,25 @@
             margin: 20px;
             justify-content: center;
         }
+        table{
+            border-collapse: collapse;
+            width: 80vh;
+        }
+        table td{
+        }
     </style>
 </head>
 <body>
+    @php
+        $bln = '';
+        $perk = '';
+
+    @endphp
     <form action="/BukuBesar/cari" method='post'>
         @csrf
         <select name="bulan" id="">
              @for($j = 0;$j < count($bulan); $j++)
-                <option value="{{(int) $bulan[$j]}}">{{$bulanString[$j]}}</option>
+                <option value="{{(int) $bulan[$j]}}" @php echo 'selected' @endphp>{{$bulanString[$j]}}</option>
             @endfor
         </select>
         <select name="kodeper" id="">
@@ -32,68 +43,45 @@
     
     <div class="fof-flex">
 <div class='fof-debet'>
-    @for($i = 0;$i < count($transDebet); $i++)
+    @for($i = 0;$i < count($trans); $i++)
         @php
-        $totaldebet = 0;
-        @endphp
-        <h3>Bulan: {{$bulanString[$i]}}</h3>
-        <h3>Perk. {{$kodeper}}</h3>
-        <h3>Debet</h3>
-        <table border=1>
-            <tr>
-                <th>Tanggal</th>
-                <th>Keterangan</th>
-                <th>Debet</th>
-            </tr>
-            @foreach($transDebet[$i] as $pie)
-            <tr>
-                <td>{{$pie['tanggal']}}</td>
-                <td>{{$pie['keterangan_transaksi']}}</td>
-                <td>{{$pie['nominal']}}</td>
-            </tr>
-            @php
-            $totaldebet += $pie['nominal'];
-            @endphp
-            @endforeach
-            <tr>
-                <td colspan=2>Total</td>
-                <td>{{$totaldebet}}</td>
-            </tr>
-        </table>
-    @endfor
-
-</div>
-
-<div class="fof-kredit">
-@for($i = 0;$i < count($transKredit); $i++)
-        @php
+        $totalDebet = 0;
         $totalKredit = 0;
         @endphp
-        <h3>Bulan: {{$bulanString[$i]}}</h3>
-        <h3>Perk. {{$kodeper}}</h3>
-        <h3>Kredit</h3>
-        <table border=1>
+        <h3>Bulan: {{$bulanString[$i]}}      Perk. {{$kodeper}}</h3>
+        <table border=1 cellspacing=10 cellpadding=10>
             <tr>
                 <th>Tanggal</th>
                 <th>Keterangan</th>
-                <th>Kredit</th>
+                <th>Tipe</th>
+                <th>Nominal</th>
             </tr>
-            @foreach($transKredit[$i] as $pie)
+            @foreach($trans[$i] as $pie)
             <tr>
                 <td>{{$pie['tanggal']}}</td>
                 <td>{{$pie['keterangan_transaksi']}}</td>
+                <td>{{$pie['tipe']}}</td>
                 <td>{{$pie['nominal']}}</td>
             </tr>
             @php
+            if($pie['tipe'] == 'debet'){
+            $totalDebet += $pie['nominal'];
+            }else{
             $totalKredit += $pie['nominal'];
+            }
             @endphp
             @endforeach
             <tr>
-                <td colspan=2>Total</td>
+                <td colspan=3>Total Debet</td>
+                <td>{{$totalDebet}}</td>
+            </tr>
+            <tr>
+                <td colspan=3>Total Kredit</td>
                 <td>{{$totalKredit}}</td>
             </tr>
         </table>
     @endfor
+
 </div>
 </div>
 
