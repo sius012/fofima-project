@@ -12,17 +12,50 @@ class BukuBesarController extends Controller
 {
     public function index(){
         $perkiraan = Perkiraan::get();
-        return view('bukuBesar', compact('perkiraan'));
+        $bulan = array('1','2','3','4','5','6','7','8','9','10','11','12');
+        $bulanString = array('Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
+
+
+        $kodeper = '1001';
+        $transDebet = array();
+        $transKredit = array();
+        $bulan = array('1','2','3','4','5','6','7','8','9','10','11','12');
+        $bulanString = array('Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
+
+        for($i = 0;$i < count($bulan);$i++){
+            $bulanews = (int) $bulan[$i];
+            $transaksiD = Transaksi::where('nmr_perkiraan', $kodeper)->whereMonth('tanggal', $bulanews)->where('tipe','debet')->get();
+            $transaksiK = Transaksi::where('nmr_perkiraan', $kodeper)->whereMonth('tanggal', $bulanews)->where('tipe','Kredit')->get();
+            $transaksiD = $transaksiD->toArray();
+            $transaksiK = $transaksiK->toArray();
+            array_push($transDebet, $transaksiD);
+            array_push($transKredit, $transaksiK);
+        }
+
+        return view('bukuBesar', compact('perkiraan','kodeper','transDebet','transKredit','bulanString','bulan'));
     }
 
     public function tampilkan(Request $req){
         $perkiraan = Perkiraan::get();
-        
         $kodeper = $req->input('kodeper');
-        $tanggal = $req->input('tanggal');
-        $day = Carbon::now()->format('m');
-        $transaksidebet = DB::table('buku_besar')->whereMonth('tanggal',$day)->where("nmr_perkiraan", $kodeper)->where("tipe", "debet")->get();
-        $transaksikredit = DB::table('buku_besar')->whereMonth('tanggal',$day)->where("nmr_perkiraan", $kodeper)->where("tipe", "kredit")->get();
-        return view('bukuBesar', compact('perkiraan','transaksidebet','transaksikredit','kodeper'));
+        $kodeper = $req->input('bulan');
+        $transDebet = array();
+        $transKredit = array();
+        $bulan = array('1','2','3','4','5','6','7','8','9','10','11','12');
+        $bulanString = array('Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
+
+        for($i = 0;$i < count($bulan);$i++){
+            $bulanews = (int) $bulan[$i];
+            $transaksiD = Transaksi::where('nmr_perkiraan', $kodeper)->whereMonth('tanggal', $bulanews)->where('tipe','debet')->get();
+            $transaksiK = Transaksi::where('nmr_perkiraan', $kodeper)->whereMonth('tanggal', $bulanews)->where('tipe','Kredit')->get();
+            $transaksiD = $transaksiD->toArray();
+            $transaksiK = $transaksiK->toArray();
+            array_push($transDebet, $transaksiD);
+            array_push($transKredit, $transaksiK);
+        }
+
+        return view('bukuBesar', compact('perkiraan','kodeper','transDebet','transKredit','bulanString','bulan'));
+
+
     }
 }

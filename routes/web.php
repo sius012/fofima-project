@@ -24,5 +24,5 @@ Route::get('/dashboard', function () {
 Route::post('/transaksi/memasukan', 'TransaksiController@prosestransaksi');
 Route::get('/transaksi/tabel', 'TransaksiController@tampilkan');
 Route::get('/BukuBesar', 'BukuBesarController@index');
-Route::post('/BukuBesar/cari', 'BukuBesarController@tampilkan');
+Route::match(['get','post'],'/BukuBesar/cari', 'BukuBesarController@tampilkan');
 
