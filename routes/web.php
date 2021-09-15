@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,4 +27,6 @@ Route::get('/transaksi/tabel', 'TransaksiController@tampilkan');
 Route::get('/BukuBesar', 'BukuBesarController@index')->name("buku-besar");
 Route::match(['get','post'],'/BukuBesar/cari', 'BukuBesarController@tampilkan');
 Route::get('/neracaLajur', 'NeracaLajurController@index');
+Route::post('/neracaLajur/cari', 'NeracaLajurController@cari');
+
 

@@ -20,7 +20,7 @@ class BukuBesarController extends Controller
 
         $transaksi = Transaksi::whereMonth('tanggal', $bulanini2)->get();
 
-        return view('bukuBesar', compact('perkiraan','transaksi','bulanString','bulan','bulanini'));
+        return view('index', compact('perkiraan','transaksi','bulanString','bulan','bulanini'));
     }
 
     public function tampilkan(Request $req){

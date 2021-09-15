@@ -24,7 +24,7 @@
 <body>
     @php
         $bln = 'semua';
-        $perk = 'semua';
+        $perk = 'semua  ';
         
         if(isset($bulanselect)){
             $bln = $bulanselect;
