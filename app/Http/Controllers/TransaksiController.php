@@ -38,7 +38,7 @@ class TransaksiController extends Controller
        if($upload and $upload2){
            $file->move($tujuanupload,$file->getClientOriginalName());
            $transaksi = Transaksi::get();
-           return view('tabel', compact('transaksi'));
+           return redirect('BukuBesar');
        }else{
            echo "gagal";
        }
