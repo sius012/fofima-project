@@ -1,30 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .fof-flex{
-            margin: 20px;
-        }
-        table{
-            border-collapse: collapse;
-            width: 80vh;
-            margin: 20px;
-        }
-        table td{
-        }
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-    </script>
-</head>
-<body>
+@section('title', ' Buku Besar')
+@section('icon', 'bi-book')
+@extends('layout.keuangan')
+@section('konten')
     @php
         $bln = 'semua';
-        $perk = 'semua  ';
+        $perk = 'semua';
         
         if(isset($bulanselect)){
             $bln = $bulanselect;
@@ -33,11 +13,12 @@
 
 
     @endphp
-    <h3>Bulan </h3>
-    <h3>Perk. Semua</h3>
-    <form action="/BukuBesar/cari" method='post'>
+   
+    <form action="/BukuBesar/cari" method='post' class="m-3">
         @csrf
-        <select name="bulan" id="">
+        <div class="form-group col-xs-2">
+            <label for="exampleInputEmail1">Bulan</label>
+            <select name="bulan" id="" class="form-control" style="width: 10rem">
              @for($j = 0;$j < count($bulan); $j++)
                 <option value="{{$bulan[$j]}}" 
                 @if($bulan[$j] == $bln)
@@ -47,10 +28,11 @@
              <option value="semua" @if($bln == 'semua')
                  selected
                   @endif > Semua </option>
-        </select>
-        
-        
-        <select name="kodeper" id="">
+             </select>
+        </div>
+        <div class="form-group mb-3">
+            <label for="exampleInputPassword1">Kode Perkiraan</label>
+            <select name="kodeper" id="" class='form-control' style="width: 20rem">
             @foreach($perkiraan as $p)
                 <option value="{{$p->nmr_perkiraan}}" @if($p->nmr_perkiraan == $perk)
                  selected
@@ -61,8 +43,10 @@
                  selected
                   @endif> Semua </option>
         </select>
-        <input type="submit" value='cari'>
+        </div>
+        <button type="submit" class="btn btn-primary">Cari</button>
     </form>
+    <hr>
 
     
     <div class="fof-flex">
@@ -81,7 +65,7 @@ switch($stat){
                     $totalDebetT = 0;
                     $totalKreditT = 0;
                 @endphp
-            <table border=1>
+            <table border=1 class='table table-stripped' style:"background-color: yellow">
                 <tr>
                     <th>Tanggal</th>
                     <th>Nomer Perkiraan</th>
@@ -125,16 +109,18 @@ switch($stat){
                     $totalDebetT = 0;
                     $totalKreditT = 0;
                 @endphp
-            <table border=1>
-                <tr>
-                    <th>Tanggal</th>
-                    <th>Nomer Perkiraan</th>
-                    <th>Keterangan</th>
-                    <th>Tipe</th>
-                    <th>Nominal</th>
-                </tr>
+             <table border=1 class='table table-stripped' style:"background-color: yellow">
+                 <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Nomer Perkiraan</th>
+                        <th>Keterangan</th>
+                        <th>Tipe</th>
+                        <th>Nominal</th>
+                    </tr>
+                </thead>
                 @foreach($trans[$i] as $t)
-                
+                <tbody>
                 <tr>
                     <td>{{$t['tanggal']}}</td>
                     <td>{{$t['nmr_perkiraan']}}</td>
@@ -142,6 +128,7 @@ switch($stat){
                     <td>{{$t['tipe']}}</td>
                     <td>{{$t['nominal']}}</td>
                 </tr>
+                
                 @php
                     if($t['tipe'] == 'debet'){
                         $totalDebetT += $t['nominal'];
@@ -160,6 +147,7 @@ switch($stat){
                     <th colspan=4>Total Kredit</th>
                     <th>{{$totalKreditT}}</th>
                 </tr>
+                </tbody>
             </table>
         @endfor
 
@@ -170,7 +158,7 @@ switch($stat){
         @php break;
     default:  @endphp
 
-    <table border=1>
+    <table border=1 class='table table-stripped' style:"background-color: yellow">
         <tr>
             <th>Tanggal</th>
             <th>Nomor Perkiraan</th>
@@ -212,7 +200,7 @@ switch($stat){
 
  }else{ @endphp 
     <div class='fof-debet'>
-    <table border=1>
+    <table border=1 class="table table-stripped ">
         <tr>
             <th>Tanggal</th>
             <th>Nomor Perkiraan</th>
@@ -251,11 +239,8 @@ switch($stat){
 </div>    
 @php } @endphp
 
-</div>
+
+@endsection
 
 
 
-
-    
-</body>
-</html>

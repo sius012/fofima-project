@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 class BukuBesarController extends Controller
 {
     public function index(){
+        $kredit = Perkiraan::where('nmr_perkiraan','1001')->orWhere('nmr_perkiraan','1002')->orWhere('nmr_perkiraan','1003')->get();
         $bulanini = Carbon::now()->isoFormat('MMMM');
         $bulanini2 = Carbon::now()->month;
         $perkiraan = Perkiraan::get();
@@ -20,7 +21,8 @@ class BukuBesarController extends Controller
 
         $transaksi = Transaksi::whereMonth('tanggal', $bulanini2)->get();
 
-        return view('index', compact('perkiraan','transaksi','bulanString','bulan','bulanini'));
+
+        return view('transaksi', compact('perkiraan','transaksi','bulanString','bulan','bulanini','kredit'));
     }
 
     public function tampilkan(Request $req){

@@ -15,16 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::get('/transaksi',  'TransaksiController@index');
 Route::get('/dashboard', function () {
-    return view('welcome');
+    return view('dashboard');
 });
-Route::post('/transaksi/memasukan', 'TransaksiController@prosestransaksi');
-Route::get('/transaksi/tabel', 'TransaksiController@tampilkan');
-Route::get('/BukuBesar', 'BukuBesarController@index')->name("buku-besar");
+Route::post('/bukubesar/transaksi', 'TransaksiController@prosestransaksi');
+Route::get('/BukuBesar', 'BukuBesarController@index');
 Route::match(['get','post'],'/BukuBesar/cari', 'BukuBesarController@tampilkan');
 Route::get('/neracaLajur', 'NeracaLajurController@index');
 Route::post('/neracaLajur/cari', 'NeracaLajurController@cari');
