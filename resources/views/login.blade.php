@@ -2,9 +2,9 @@
 
 @section('content')
 <style>
-    .card-header{
-    background-color: #150050;
-    font-size: 25px;
+     .card-header{
+    background-color: black;
+    font-size: 23px;
     text-align: center;
     color: white;
     }
@@ -13,25 +13,43 @@
     text-align: center;
     }
     .btn{
-        background: #14279B;
-        color: white; 
-        border-radius: 37px; 
-        font-size: 15px;
+        font-size: 18px;
+        text-align: center;
+        background: #333333;
+        border-radius: 37px;
+        border: none;
+        box-shadow: 0px 1px 8px black;
+        cursor: pointer;
+        color: white;
+        font-family: "Raleway SemiBold", sans-serif;
+        height: 42.3px;
+        margin:center;
+        margin-right: 150px;
+        margin-top: 50px;
+        transition: 0.25s;
+        width: 153px;
     }
-    .btn:hover{
-        background-color: #170055;
-        color: white; 
-
+   .btn:hover{
+       background-color: black;
+       color: white;
+   }
+    .form-control{
+        border-color:  black;
     }
-
+    .card{
+       background: #fbfbfb;
+       border-radius: 10px;
+       box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+    }
+   
 </style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('LOGIN') }}</div>
+                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
+                <div class="card-body" >
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -64,28 +82,28 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-6 offset-md-4"style="margin-left:148px;">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
+                                    <label class="form-check-label" for="remember" style="font-size:15px;">
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}" style="text-decoration: none; margin-left: 17px;">
+                        @if (Route::has('password.request'))
+                                    <a class="btn1 " href="{{ route('password.request') }}" style="text-decoration: none;font-size:15px;margin-left :400px;">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn" style="margin-top: 35px;text-align:center;">
+                                    {{ __('Login') }}
+                                </button>
+
                             </div>
                         </div>
                     </form>

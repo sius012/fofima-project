@@ -3,8 +3,8 @@
 @section('content')
 <style>
     .card-header{
-    background-color: #150050;
-    font-size: 25px;
+    background-color: black;
+    font-size: 22px;
     text-align: center;
     color: white;
     }
@@ -13,15 +13,32 @@
     text-align: center;
     }
     .btn{
-        background: #14279B;
-        color: white; 
-        border-radius: 37px; 
-        font-size: 15px;
+        font-size: 18px;
+        text-align: center;
+        background: #333333;
+        border-radius: 37px;
+        border: none;
+        box-shadow: 0px 1px 8px black;
+        cursor: pointer;
+        color: white;
+        font-family: "Raleway SemiBold", sans-serif;
+        height: 42.3px;
+        margin: 0 auto;
+        margin-top: 50px;
+        transition: 0.25s;
+        width: 153px;
     }
-    .btn:hover{
-        background-color: #170055;
-        color: white; 
-
+   .btn:hover{
+       background-color: black;
+       color: white;
+   }
+    .form-control{
+        border-color:  black;
+    }
+    .card{
+       background: #fbfbfb;
+       border-radius: 10px;
+       box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
     }
 
 </style>
@@ -29,7 +46,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('REGISTER') }}</div>
+                <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -87,7 +104,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn">
                                     {{ __('Register') }}
                                 </button>
                             </div>
