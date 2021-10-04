@@ -71,6 +71,7 @@
 
         .banner {
             height: 100vh;
+            width: 100%;
             background-image: url(smk.jpg.crdownload);
             background-size: cover;
             position: relative;
@@ -168,7 +169,6 @@
             right: 30px;
             top: 20px;
         }
-
         @media (max-width: 868px) {
             body.disabledScroll {
                 overflow: hidden;
@@ -212,7 +212,7 @@
         .container {
             background: #111;
             height: auto;
-            width: 102%;
+            width: 100%;
             font-family: monospace;
             color: #fff;
         }
@@ -223,7 +223,15 @@
             justify-content: center;
             flex-direction: column;
             text-align: center;
+            margin: 30px;
 
+        }
+        
+        .footer-bottom {
+            color: white;
+            background: #111;
+            margin-top: -35px;
+            margin-left: 37%;
         }
 
         .footer-content img {
@@ -238,8 +246,22 @@
             align-items: center;
             justify-content: center;
             margin: 0.5rem 0 0.5rem 0;
+            margin-top: 0px;
+            margin-right: 25px;
         }
 
+        .facebook:hover{
+                opacity: 0.7;
+                transition: 0.3s;
+            }
+            .insta_log:hover{
+                opacity: 0.7;
+                transition: 0.3s;
+            }
+            .yt:hover{
+                opacity: 0.7;
+                transition: 0.3s;
+            }
         .socials li {
             margin: 0 10px;
         }
@@ -258,13 +280,42 @@
             color: aqua;
         }
 
-        .footer-bottom {
-            color: white;
-            background: #112031;
-            width: 105vw;
-            padding: 20px 0;
-            text-align: center;
+      
+        ::-webkit-scrollbar{
+            display:none;
         }
+        img.logo{
+            height: 35px;
+            width:36px;
+            margin-right: -30px; 
+            margin-bottom: 12px;
+        }
+        img.insta_log{
+            height:35px;
+            width: 35px;
+            margin-bottom: 12px;
+           margin-left: -18px;
+        }
+        img.facebook{
+            height: 50px;
+            width:70px;
+            margin-left: 12px;
+            margin-bottom: 5px;
+           
+        }
+        img.yt{
+            height: 35px;
+            width: 35px;
+            margin-bottom: 5px;
+            margin-left: -15px;
+            
+        }
+        body{
+          overflow-x: hidden;
+      }
+      hr{
+          margin-top: -20px;
+      }
     </style>
     <link href="fontawesome/css/all.css" rel="stylesheet">
 </head>
@@ -323,19 +374,24 @@
 
         <footer>
 
-            <hr>
+           
             <div class="footer-content">
-
-                <img src="4.jpg" alt="header logo" />
-
+                <br>
+              <h3 style="margin-top: -20px; color:rgba(255, 255, 255, 0.6)"> Follow Our Social Media</h3><br> 
+              <hr style="opacity: 0.6;">
+              
                 <ul class="socials">
-                    <li><a href="https://www.facebook.com/SmkBagimuNegerikuSMG5/"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="https://www.instagram.com/smkbagimunegeriku/"><i class="fab fa-instagram"> </i></a></li>
-                    <li><a href="https://www.youtube.com/hashtag/smkbagimunegeriku"> <i class="fab fa-youtube"></i></a></li>
+                
+                    <li>
+                    <img src="4.jpg" alt="header logo" class="logo">  
+                    <a href="https://www.facebook.com/SmkBagimuNegerikuSMG5/"><img src="https://www.logo.wine/a/logo/Facebook/Facebook-f_Logo-Blue-Logo.wine.svg" class="facebook"></a>
+                    <a href="https://www.instagram.com/smkbagimunegeriku/"><img src="5.png" class="insta_log"></a>
+                </li>
+                    <li><a href="https://www.youtube.com/hashtag/smkbagimunegeriku"> <img src="yt.png" class="yt" ></a></li>
                 </ul>
             </div>
             <div class="footer-bottom">
-                <p>copyright &copy;2021 Designed by Fofima Team</p>
+                <p>copyright &copy;2021 Designed by Fofima Team</p><br>
             </div>
         </footer>
 </body>
